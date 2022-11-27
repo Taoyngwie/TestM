@@ -1,0 +1,1524 @@
+[1mdiff --git a/Info.cs b/Info.cs[m
+[1mdeleted file mode 100644[m
+[1mindex 5fe1a6d..0000000[m
+[1m--- a/Info.cs[m
+[1m+++ /dev/null[m
+[36m@@ -1,31 +0,0 @@[m
+[31m-class Info[m
+[31m-{[m
+[31m-    private string title;[m
+[31m-    private string name;[m
+[31m-    private string lastname;[m
+[31m-[m
+[31m-    public Info(string title, string name, string lastname)[m
+[31m-    {[m
+[31m-        this.title = title;[m
+[31m-        this.name = name;[m
+[31m-        this.lastname = lastname;[m
+[31m-    }[m
+[31m-    public string GetFullName() {[m
+[31m-        return $"{title}{name} {lastname}";[m
+[31m-    }[m
+[31m-    public string GetTitle()[m
+[31m-    {[m
+[31m-        return this.title;[m
+[31m-    } [m
+[31m-[m
+[31m-    public string GetName()[m
+[31m-    {[m
+[31m-        return this.name;[m
+[31m-    }  [m
+[31m-[m
+[31m-    public string GetLastName()[m
+[31m-    {[m
+[31m-        return this.lastname;[m
+[31m-    }  [m
+[31m-[m
+[31m-}[m
+\ No newline at end of file[m
+[1mdiff --git a/Node.cs b/Node.cs[m
+[1mdeleted file mode 100644[m
+[1mindex 6a084f7..0000000[m
+[1m--- a/Node.cs[m
+[1m+++ /dev/null[m
+[36m@@ -1,30 +0,0 @@[m
+[31m-class Node<T>[m
+[31m-{[m
+[31m-    private T value;[m
+[31m-    private Node<T> next = null;[m
+[31m-[m
+[31m-    public Node(T value)[m
+[31m-    {[m
+[31m-        this.SetValue(value);[m
+[31m-    }[m
+[31m-[m
+[31m-    public void SetNext(Node<T> next)[m
+[31m-    {[m
+[31m-        this.next = next;[m
+[31m-    }[m
+[31m-[m
+[31m-    public Node<T> Next()[m
+[31m-    {[m
+[31m-        return this.next;[m
+[31m-    }[m
+[31m-[m
+[31m-    public T GetValue()[m
+[31m-    {[m
+[31m-        return this.value;[m
+[31m-    }[m
+[31m-[m
+[31m-    public void SetValue(T value)[m
+[31m-    {[m
+[31m-        this.value = value;[m
+[31m-    }[m
+[31m-}[m
+\ No newline at end of file[m
+[1mdiff --git a/Program.cs b/Program.cs[m
+[1mindex d0329d2..3751555 100644[m
+[1m--- a/Program.cs[m
+[1m+++ b/Program.cs[m
+[36m@@ -1,911 +1,2 @@[m
+[31m-﻿enum Menu {[m
+[31m-    Register = 1, Login, MockupTime[m
+[31m-}[m
+[31m-enum MenuII {[m
+[31m-    Register = 1, BangModToBangKhunTien, BangKhunTienToBangMod, Logout[m
+[31m-}[m
+[31m-class Program {[m
+[31m-    static RegisterInfoList registerList;[m
+[31m-    static Info currentLogin;[m
+[31m-    static Queue<string> BM_BKT07_30 = new Queue<string>();[m
+[31m-    static Queue<string> BM_BKT08_00 = new Queue<string>();[m
+[31m-    static Queue<string> BM_BKT08_15 = new Queue<string>();[m
+[31m-    static Queue<string> BM_BKT08_30 = new Queue<string>();[m
+[31m-    static Queue<string> BM_BKT12_00 = new Queue<string>();[m
+[31m-    static Queue<string> BM_BKT14_00 = new Queue<string>();[m
+[31m-    static Queue<string> BM_BKT16_00 = new Queue<string>();[m
+[31m-[m
+[31m-    static Queue<string> BKT_BM07_00 = new Queue<string>();[m
+[31m-    static Queue<string> BKT_BM10_00 = new Queue<string>();[m
+[31m-    static Queue<string> BKT_BM13_00 = new Queue<string>();[m
+[31m-    static Queue<string> BKT_BM15_00 = new Queue<string>();[m
+[31m-    static Queue<string> BKT_BM16_30 = new Queue<string>();[m
+[31m-    static Queue<string> BKT_BM17_00 = new Queue<string>();[m
+[31m-    static Queue<string> BKT_BM17_30 = new Queue<string>();[m
+[31m-    static Queue<string> BKT_BM18_30 = new Queue<string>();[m
+[31m-    public static void Main(string[] args) {[m
+[31m-[m
+[31m-        PrepareRegisterListWhenProgramIsLoad();[m
+[31m-        PrintMenuScreen();[m
+[31m-        [m
+[31m-    }[m
+[31m-    public static void PrintNontification(string text, Queue<string> BM_BKT07_30, Queue<string> BM_BKT08_00, Queue<string> BM_BKT08_15, Queue<string> BM_BKT08_30, Queue<string> BM_BKT12_00[m
+[31m-    , Queue<string> BM_BKT14_00, Queue<string> BM_BKT16_00, Queue<string> BKT_BM07_00, Queue<string> BKT_BM10_00, Queue<string> BKT_BM13_00, Queue<string> BKT_BM15_00, Queue<string> BKT_BM16_30[m
+[31m-    , Queue<string> BKT_BM17_00, Queue<string> BKT_BM17_30, Queue<string> BKT_BM18_30) {[m
+[31m-        [m
+[31m-        if(text == "07:00:00" ) { //บางขุน[m
+[31m-            Console.WriteLine("Time Table : 07:00:00");[m
+[31m-            for(int Number = 0; Number <= BKT_BM07_00.GetLength()-1; Number++) {[m
+[31m-                Console.WriteLine("{0}. {1}", Number+1, BKT_BM07_00.Get(Number));[m
+[31m-            }[m
+[31m-            while (BKT_BM07_00.GetLength() != 0) {[m
+[31m-                BKT_BM07_00.Pop();[m
+[31m-            }[m
+[31m-        }[m
+[31m-        else if(text == "07:30:00") {[m
+[31m-            Console.WriteLine("*************| Time Table : 07:30:00 |*************");[m
+[31m-            for(int Number = 0; Number <= BM_BKT07_30.GetLength()-1; Number++) {[m
+[31m-                Console.WriteLine("{0}. {1}", Number+1, BM_BKT07_30.Get(Number));[m
+[31m-            }[m
+[31m-            while (BM_BKT07_30.GetLength() != 0) {[m
+[31m-                BM_BKT07_30.Pop();[m
+[31m-            }[m
+[31m-        }[m
+[31m-        else if(text == "08:00:00") {[m
+[31m-            Console.WriteLine("*************| Time Table : 08:00:00 |*************");[m
+[31m-            for(int Number = 0; Number <= BM_BKT08_00.GetLength()-1; Number++) {[m
+[31m-                Console.WriteLine("{0}. {1}", Number+1, BM_BKT08_00.Get(Number));[m
+[31m-            }[m
+[31m-            while (BM_BKT08_00.GetLength() != 0) {[m
+[31m-                BM_BKT08_00.Pop();[m
+[31m-            }[m
+[31m-        }[m
+[31m-        else if(text == "08:15:00") {[m
+[31m-            Console.WriteLine("*************| Time Table : 08:15:00 |*************");[m
+[31m-            for(int Number = 0; Number <= BM_BKT08_15.GetLength()-1; Number++) {[m
+[31m-                Console.WriteLine("{0}. {1}", Number+1, BM_BKT08_15.Get(Number));[m
+[31m-            }[m
+[31m-            while (BM_BKT08_15.GetLength() != 0) {[m
+[31m-                BM_BKT08_15.Pop();[m
+[31m-            }[m
+[31m-        }[m
+[31m-        else if(text == "08:30:00") {[m
+[31m-            Console.WriteLine("*************| Time Table : 08:30:00 |*************");[m
+[31m-            for(int Number = 0; Number <= BM_BKT08_30.GetLength()-1; Number++) {[m
+[31m-                Console.WriteLine("{0}. {1}", Number+1, BM_BKT08_30.Get(Number));[m
+[31m-            }[m
+[31m-            while (BM_BKT08_30.GetLength() != 0) {[m
+[31m-                BM_BKT08_30.Pop();[m
+[31m-            }[m
+[31m-        }[m
+[31m-        else if(text == "10:00:00") { //บางขุน[m
+[31m-            Console.WriteLine("*************| Time Table : 10:00:00 |*************");[m
+[31m-            for(int Number = 0; Number <= BKT_BM10_00.GetLength()-1; Number++) {[m
+[31m-                Console.WriteLine("{0}. {1}", Number+1, BKT_BM10_00.Get(Number));[m
+[31m-            }[m
+[31m-            while (BKT_BM10_00.GetLength() != 0) {[m
+[31m-                BKT_BM10_00.Pop();[m
+[31m-            }[m
+[31m-        }[m
+[31m-        else if(text == "12:00:00") {[m
+[31m-            Console.WriteLine("*************| Time Table : 12:00:00 |*************");[m
+[31m-            for(int Number = 0; Number <= BM_BKT12_00.GetLength()-1; Number++) {[m
+[31m-                Console.WriteLine("{0}. {1}", Number+1, BM_BKT12_00.Get(Number));[m
+[31m-            }[m
+[31m-            while (BM_BKT12_00.GetLength() != 0) {[m
+[31m-                BM_BKT12_00.Pop();[m
+[31m-            }[m
+[31m-        }[m
+[31m-        else if(text == "13:00:00") { //บางขุน[m
+[31m-            Console.WriteLine("*************| Time Table : 13:00:00 |*************");[m
+[31m-            for(int Number = 0; Number <= BKT_BM13_00.GetLength()-1; Number++) {[m
+[31m-                Console.WriteLine("{0}. {1}", Number+1, BKT_BM13_00.Get(Number));;[m
+[31m-            }[m
+[31m-            while (BKT_BM13_00.GetLength() != 0) {[m
+[31m-                BKT_BM13_00.Pop();[m
+[31m-            }[m
+[31m-        }[m
+[31m-        else if(text == "14:00:00") {[m
+[31m-            Console.WriteLine("*************| Time Table : 14:00:00 |*************");[m
+[31m-            for(int Number = 0; Number <= BM_BKT14_00.GetLength()-1; Number++) {[m
+[31m-                Console.WriteLine("{0}. {1}", Number+1, BM_BKT14_00.Get(Number));[m
+[31m-            }[m
+[31m-            while (BM_BKT14_00.GetLength() != 0) {[m
+[31m-                BM_BKT14_00.Pop();[m
+[31m-            }[m
+[31m-        }[m
+[31m-        else if(text == "15:00:00") { //บางขุน[m
+[31m-            Console.WriteLine("*************| Time Table : 15:00:00 |*************");[m
+[31m-            for(int Number = 0; Number <= BKT_BM15_00.GetLength()-1; Number++) {[m
+[31m-                Console.WriteLine("{0}. {1}", Number+1, BKT_BM15_00.Get(Number));[m
+[31m-            }[m
+[31m-            while (BKT_BM15_00.GetLength() != 0) {[m
+[31m-                BKT_BM15_00.Pop();[m
+[31m-            }[m
+[31m-        }[m
+[31m-        else if(text == "16:00:00") {[m
+[31m-            Console.WriteLine("*************| Time Table : 16:00:00 |*************");[m
+[31m-            for(int Number = 0; Number <= BM_BKT16_00.GetLength()-1; Number++) {[m
+[31m-                Console.WriteLine("{0}. {1}", Number+1, BM_BKT16_00.Get(Number));[m
+[31m-            }[m
+[31m-            while (BM_BKT16_00.GetLength() != 0) {[m
+[31m-                BM_BKT16_00.Pop();[m
+[31m-            }[m
+[31m-        }[m
+[31m-        else if(text == "16:30:00") { //บางขุน[m
+[31m-            Console.WriteLine("*************| Time Table : 16:30:00 |*************");[m
+[31m-            for(int Number = 0; Number <= BKT_BM16_30.GetLength()-1; Number++) {[m
+[31m-                Console.WriteLine("{0}. {1}", Number+1, BKT_BM16_30.Get(Number));[m
+[31m-            }[m
+[31m-            while (BKT_BM16_30.GetLength() != 0) {[m
+[31m-                BKT_BM16_30.Pop();[m
+[31m-            }[m
+[31m-        }[m
+[31m-        else if(text == "17:00:00") { //บางขุน[m
+[31m-            Console.WriteLine("*************| Time Table : 17:00:00 |*************");[m
+[31m-            for(int Number = 0; Number <= BKT_BM17_00.GetLength()-1; Number++) {[m
+[31m-                Console.WriteLine("{0}. {1}", Number+1, BKT_BM17_00.Get(Number));[m
+[31m-            }[m
+[31m-            int round = BKT_BM17_00.GetLength()-1;[m
+[31m-            while (BKT_BM17_00.GetLength() != 0) {[m
+[31m-                BKT_BM17_00.Pop();[m
+[31m-            }[m
+[31m-        }[m
+[31m-        else if(text == "17:30:00") { //บางขุน[m
+[31m-            Console.WriteLine("*************| Time Table : 17:30:00 |*************");[m
+[31m-            for(int Number = 0; Number <= BKT_BM17_30.GetLength()-1; Number++) {[m
+[31m-                Console.WriteLine("{0}. {1}", Number+1, BKT_BM17_30.Get(Number));[m
+[31m-            }[m
+[31m-            while (BKT_BM17_30.GetLength() != 0) {[m
+[31m-                BKT_BM17_30.Pop();[m
+[31m-            }[m
+[31m-        }[m
+[31m-        else if(text == "18:30:00") { //บางขุน[m
+[31m-            Console.WriteLine("*************| Time Table : 18:30:00 |*************");[m
+[31m-            for(int Number = 0; Number <= BKT_BM18_30.GetLength()-1; Number++) {[m
+[31m-                Console.WriteLine("{0}. {1}", Number+1, BKT_BM18_30.Get(Number));[m
+[31m-            }[m
+[31m-            while (BKT_BM18_30.GetLength() != 0) {[m
+[31m-                BKT_BM18_30.Pop();[m
+[31m-            }[m
+[31m-        }[m
+[31m-    }[m
+[31m-    static void MockupTime() {[m
+[31m-[m
+[31m-    }[m
+[31m-    static void PrintMenuScreen()[m
+[31m-    {   [m
+[31m-        Thread mainThred = Thread.CurrentThread;[m
+[31m-        mainThred.Name = "Main thred";[m
+[31m-        Thread thread1 = new Thread(() => CheckTime()); [m
+[31m-        Thread thread2 = new Thread(() => PrintFirstListMenu());[m
+[31m-        Thread thread3 = new Thread(() => InputMenuFromKeyboard());[m
+[31m-        [m
+[31m-        thread1.Start();[m
+[31m-        thread2.Start();[m
+[31m-        thread3.Start();[m
+[31m-[m
+[31m-        Console.Clear();[m
+[31m-        [m
+[31m-    }[m
+[31m-    static void CheckTime() {[m
+[31m-        while(true) {[m
+[31m-[m
+[31m-            string text = DateTime.Now.ToLongTimeString();[m
+[31m-            //Thread.Sleep(1000);//เรียกต่อ1วินาที[m
+[31m-[m
+[31m-            PrintNontification(text, BM_BKT07_30, BM_BKT08_00, BM_BKT08_15, BM_BKT08_30, BM_BKT12_00, BM_BKT14_00[m
+[31m-            , BM_BKT16_00, BKT_BM07_00, BKT_BM10_00, BKT_BM13_00, BKT_BM15_00, BKT_BM16_30, BKT_BM17_00[m
+[31m-            , BKT_BM17_30, BKT_BM18_30);[m
+[31m-        }[m
+[31m-    }[m
+[31m-    static void PrintFirstListMenu()[m
+[31m-    {[m
+[31m-        Console.WriteLine("Welcome to KMUTT Bus Booking");[m
+[31m-        Console.WriteLine("*******************************************************");[m
+[31m-        Console.WriteLine("1. Register");[m
+[31m-        Console.WriteLine("2. Login");[m
+[31m-        Console.WriteLine("3. Select mockup time");[m
+[31m-        Console.WriteLine("Any number to end this program.");[m
+[31m-        Console.WriteLine("*******************************************************");[m
+[31m-    }[m
+[31m-[m
+[31m-    static void PrintSecondListMenu()[m
+[31m-    {[m
+[31m-        Console.WriteLine(Program.registerList.CurrentLogin.GetFullName());[m
+[31m-        Console.WriteLine("Welcome to KMUTT Bus Booking");[m
+[31m-        Console.WriteLine("*******************************************************");[m
+[31m-        Console.WriteLine("1. Register");[m
+[31m-        Console.WriteLine("2. BangMod - BangKhunTien");[m
+[31m-        Console.WriteLine("3. BangKhunTie - BangMod");[m
+[31m-        Console.WriteLine("4. Logout");[m
+[31m-        Console.WriteLine("*******************************************************");[m
+[31m-    }[m
+[31m-[m
+[31m-    static void InputMenuFromKeyboard()[m
+[31m-    {[m
+[31m-        Console.Write("Please Input Menu: ");[m
+[31m-        Menu menu = (Menu)(int.Parse(Console.ReadLine())); [m
+[31m-[m
+[31m-        PresentMenu(menu);[m
+[31m-    }[m
+[31m-[m
+[31m-    static void InputMenuIIFromKeyboard()[m
+[31m-    {[m
+[31m-        Console.Write("Please Input Menu: ");[m
+[31m-        MenuII menuII = (MenuII)(int.Parse(Console.ReadLine())); [m
+[31m-[m
+[31m-        PresentMenu(menuII);[m
+[31m-    }[m
+[31m-[m
+[31m-    static void PresentMenu(Menu menu)[m
+[31m-    {[m
+[31m-        switch (menu)[m
+[31m-        {[m
+[31m-            case Menu.Register:[m
+[31m-                ShowInputRegister();[m
+[31m-                break;[m
+[31m-[m
+[31m-            case Menu.Login:[m
+[31m-                Login();[m
+[31m-                break;[m
+[31m-[m
+[31m-            default:[m
+[31m-                break;[m
+[31m-        }[m
+[31m-    }[m
+[31m-[m
+[31m-     static void PresentMenu(MenuII menuII)[m
+[31m-    {[m
+[31m-        [m
+[31m-        var login = Program.registerList.CurrentLogin;[m
+[31m-        switch (menuII)[m
+[31m-        {[m
+[31m-            case MenuII.Register:[m
+[31m-                ShowInputRegister();[m
+[31m-                break;[m
+[31m-[m
+[31m-            case MenuII.BangModToBangKhunTien:[m
+[31m-                string TimeCheckBM = ShowTimeBM_BKT();[m
+[31m-                AddQueue(TimeCheckBM, login);[m
+[31m-                Logout();[m
+[31m-                break;[m
+[31m-[m
+[31m-            case MenuII.BangKhunTienToBangMod:[m
+[31m-                string TimeCheckBKT = showTimeBKT_BM();[m
+[31m-                AddQueue(TimeCheckBKT, login);[m
+[31m-                Logout();[m
+[31m-                break;[m
+[31m-[m
+[31m-            case MenuII.Logout:[m
+[31m-                Logout();[m
+[31m-                break;[m
+[31m-[m
+[31m-            default:[m
+[31m-                BlackToMenuII();[m
+[31m-                break;[m
+[31m-        }[m
+[31m-[m
+[31m-    }[m
+[31m-    public static void AddQueue(string TimeCheck, Info login) {[m
+[31m-        switch (TimeCheck) {[m
+[31m-            case "07:30" :[m
+[31m-                if(BM_BKT07_30.GetLength() != 0)[m
+[31m-                {[m
+[31m-                    for(int roundNum = 0; roundNum <= BM_BKT07_30.GetLength()-1; roundNum++)[m
+[31m-                    {[m
+[31m-                        if(BM_BKT07_30.Get(roundNum) != Login.GetFullname(roundNum))[m
+[31m-                        {[m
+[31m-                            BM_BKT07_30.Push(login.GetFullName());[m
+[31m-                        }[m
+[31m-                        else[m
+[31m-                        {   [m
+[31m-                            Console.Clear();[m
+[31m-                            Console.WriteLine("You already register this time => Please enter to Go next");[m
+[31m-                            Console.ReadLine();[m
+[31m-                            Console.Clear();[m
+[31m-                            BlackToMenuII();[m
+[31m-                            [m
+[31m-                        }[m
+[31m-                    }[m
+[31m-                }[m
+[31m-                else[m
+[31m-                {[m
+[31m-                    BM_BKT07_30.Push(login.GetFullName());[m
+[31m-                }[m
+[31m-                break;[m
+[31m-            case "08:00" :[m
+[31m-                if(BM_BKT08_00.GetLength() != 0)[m
+[31m-                {[m
+[31m-                    for(int roundNum = 0; roundNum <= BM_BKT08_00.GetLength()-1; roundNum++)[m
+[31m-                    {[m
+[31m-                        if(BM_BKT08_00.Get(roundNum) != login.GetFullname(roundNum))[m
+[31m-                        {[m
+[31m-                            BM_BKT08_00.Push(login.GetFullName());[m
+[31m-                        }[m
+[31m-                        else[m
+[31m-                        {[m
+[31m-                            Console.Clear();[m
+[31m-                            Console.WriteLine("You already register this time => Please enter to Go next");[m
+[31m-                            Console.ReadLine();[m
+[31m-                            Console.Clear();[m
+[31m-                            BlackToMenuII();[m
+[31m-                        }[m
+[31m-                    }[m
+[31m-                }[m
+[31m-                else[m
+[31m-                {[m
+[31m-                    BM_BKT08_00.Push(login.GetFullName());[m
+[31m-                }[m
+[31m-                break;[m
+[31m-            case "08:15" :[m
+[31m-                if(BM_BKT08_15.GetLength() != 0)[m
+[31m-                {[m
+[31m-                    for(int roundNum = 0; roundNum <= BM_BKT08_15.GetLength() - 1; roundNum++)[m
+[31m-                    {[m
+[31m-                        if(BM_BKT08_15.Get(roundNum) != login.GetFullname(roundNum))[m
+[31m-                        {[m
+[31m-                            BM_BKT08_15.Push(login.GetFullname());[m
+[31m-                        }[m
+[31m-                        else[m
+[31m-                        {[m
+[31m-                            Console.Clear();[m
+[31m-                            Console.WriteLine("You already register this time => Please enter to Go next");[m
+[31m-                            Console.ReadLine();[m
+[31m-                            Console.Clear();[m
+[31m-                            BlackToMenuII();[m
+[31m-                        }[m
+[31m-                    }[m
+[31m-                }[m
+[31m-                else[m
+[31m-                {[m
+[31m-                    BM_BKT08_15.Push(login.GetFullname());[m
+[31m-                }[m
+[31m-                break;[m
+[31m-            case "08:30" :[m
+[31m-                if(BM_BKT08_30.GetLength() !=0)[m
+[31m-                {[m
+[31m-                    for(int roundNum = 0; roundNum <= BM_BKT08_30.GetLength() - 1; roundNum++)[m
+[31m-                    {[m
+[31m-                        if(BM_BKT08_30.Get(roundNum) != login.GetFullname(roundNum))[m
+[31m-                        {[m
+[31m-                            BM_BKT08_30.Push(login.GetFullname());[m
+[31m-                        }[m
+[31m-                        else[m
+[31m-                        {[m
+[31m-                            Console.Clear();[m
+[31m-                            Console.WriteLine("You already register this time => Please enter to Go next");[m
+[31m-                            Console.ReadLine();[m
+[31m-                            Console.Clear();[m
+[31m-                            BlackToMenuII();[m
+[31m-                        }[m
+[31m-                    }   [m
+[31m-                }[m
+[31m-                else[m
+[31m-                {[m
+[31m-                    BM_BKT08_30.Push(login.GetFullname());[m
+[31m-                }[m
+[31m-                break;[m
+[31m-            case "12:00" :[m
+[31m-                if(BM_BKT12_00.GetLength() != 0)[m
+[31m-                {[m
+[31m-                    for(int roundNum = 0; roundNum <= BM_BKT12_00.GetLength() - 1;roundNum++)[m
+[31m-                    {[m
+[31m-                        if(BM_BKT12_00.Get(roundNum) != login.GetFullname(roundNum))[m
+[31m-                        {[m
+[31m-                            BM_BKT12_00.Push(login.GetFullname());[m
+[31m-                        }[m
+[31m-                        else[m
+[31m-                        {[m
+[31m-                            Console.Clear();[m
+[31m-                            Console.WriteLine("You already register this time => Please enter to Go next");[m
+[31m-                            Console.ReadLine();[m
+[31m-                            Console.Clear();[m
+[31m-                            BlackToMenuII();[m
+[31m-                        }[m
+[31m-                    }[m
+[31m-                }[m
+[31m-                else[m
+[31m-                {[m
+[31m-                    BM_BKT12_00.Push(login.GetFullname());[m
+[31m-                }[m
+[31m-                break;[m
+[31m-            case "14:00" :[m
+[31m-                if(BM_BKT14_00.GetLength() != 0)[m
+[31m-                {[m
+[31m-                    for(int roundNum = 0; roundNum <= BM_BKT14_00.GetLength() - 1; roundNum++)[m
+[31m-                    {[m
+[31m-                        if(BM_BKT14_00(roundNum) != login.GetFull(roundNum))[m
+[31m-                        {[m
+[31m-                            BM_BKT14_00.Push(login.GetFullname());[m
+[31m-                        }[m
+[31m-                        else[m
+[31m-                        {[m
+[31m-                            Console.Clear();[m
+[31m-                            Console.WriteLine("You already register this time => Please enter to Go next");[m
+[31m-                            Console.ReadLine();[m
+[31m-                            Console.Clear();[m
+[31m-                            BlackToMenuII();[m
+[31m-                        }[m
+[31m-                    }[m
+[31m-                }[m
+[31m-                else[m
+[31m-                {[m
+[31m-                    BM_BKT14_00.Push(login.GetFullname());[m
+[31m-                }[m
+[31m-                break;[m
+[31m-            case "16:00" :[m
+[31m-                if(BM_BKT16_00.GetLength() != 0)[m
+[31m-                {[m
+[31m-                    for(int roundNum = 0; roundNum <= BM_BKT16_00.GetLength() - 1; roundNum++)[m
+[31m-                    {[m
+[31m-                        if(BM_BKT16_00.Get(roundNum) != login.GetFullname(roundNum))[m
+[31m-                        {[m
+[31m-                            BM_BKT16_00.Push(login.GetFullname());[m
+[31m-                        }[m
+[31m-                        else[m
+[31m-                        {[m
+[31m-                            Console.Clear();[m
+[31m-                            Console.WriteLine("You already register this time => Please enter to Go next");[m
+[31m-                            Console.ReadLine();[m
+[31m-                            Console.Clear();[m
+[31m-                            BlackToMenuII();[m
+[31m-                        }[m
+[31m-                    }[m
+[31m-                }[m
+[31m-                else[m
+[31m-                {[m
+[31m-                    BM_BKT16_00.Push(login.GetFullname());[m
+[31m-                }[m
+[31m-                break;[m
+[31m-            case "07:00" :[m
+[31m-                if(BKT_BM07_00.GetLength() != 0)[m
+[31m-                {[m
+[31m-                    for(int roundNum = 0; roundNum <= BKT_BM07_00.GetLength() - 1; roundNum++ )[m
+[31m-                    {[m
+[31m-                        if(BKT_BM07_00(roundNum) != login.GetFullname(roundNum))[m
+[31m-                        {[m
+[31m-                            BKT_BM07_00.Push(login.GetFullname());[m
+[31m-                        }[m
+[31m-                        else[m
+[31m-                        {[m
+[31m-                            Console.Clear();[m
+[31m-                            Console.WriteLine("You already register this time => Please enter to Go next");[m
+[31m-                            Console.ReadLine();[m
+[31m-                            Console.Clear();[m
+[31m-                            BlackToMenuII();[m
+[31m-                        }[m
+[31m-                    }[m
+[31m-                }[m
+[31m-                else[m
+[31m-                {[m
+[31m-                    BKT_BM07_00.Push(login.GetFullname());[m
+[31m-                }[m
+[31m-                break;[m
+[31m-            case "10:00" :[m
+[31m-                if(BKT_BM10_00.GetLength() != 0)[m
+[31m-                {[m
+[31m-                    for(int roundNum = 0; roundNum <= BKT_BM10_00.GetLength() -1; roundNum++)[m
+[31m-                    {[m
+[31m-                        if(BKT_BM10_00(roundNum) != login.GetFullname(roundNum))[m
+[31m-                        {[m
+[31m-                            BKT_BM10_00.Push(login.GetFullname());[m
+[31m-                        }[m
+[31m-                        else[m
+[31m-                        {[m
+[31m-                            Console.Clear();[m
+[31m-                            Console.WriteLine("You already register this time => Please enter to Go next");[m
+[31m-                            Console.ReadLine();[m
+[31m-                            Console.Clear();[m
+[31m-                            BlackToMenuII();[m
+[31m-                        }[m
+[31m-                    }[m
+[31m-                }[m
+[31m-                else[m
+[31m-                {[m
+[31m-                    BKT_BM10_00.Push(login.GetFullname());[m
+[31m-                }[m
+[31m-                break;[m
+[31m-            case "13:00" :[m
+[31m-                if(BKT_BM13_00.GetLength() != 0)[m
+[31m-                {[m
+[31m-                    for(int roundNum = 0; roundNum <= BKT_BM13_00.GetLength() - 1; roundNum++)[m
+[31m-                    {[m
+[31m-                        if(BKT_BM13_00(roundNum) != login.GetFullname(roundNum))[m
+[31m-                        {[m
+[31m-                            BKT_BM13_00.Push(login.GetFullname());[m
+[31m-                        }[m
+[31m-                        else[m
+[31m-                        {[m
+[31m-                            Console.Clear();[m
+[31m-                            Console.WriteLine("You already register this time => Please enter to Go next");[m
+[31m-                            Console.ReadLine();[m
+[31m-                            Console.Clear();[m
+[31m-                            BlackToMenuII();[m
+[31m-                        }[m
+[31m-                    }[m
+[31m-                }[m
+[31m-                else[m
+[31m-                {[m
+[31m-                    BKT_BM13_00.Push(login.GetFullname());[m
+[31m-                }[m
+[31m-                break;[m
+[31m-            case "15:00" :[m
+[31m-                if(BKT_BM15_00.GetLength() != 0)[m
+[31m-                {[m
+[31m-                    for(int roundNum = 0; roundNum <= BKT_BM15_00.GetLength() -1; roundNum++)[m
+[31m-                    {[m
+[31m-                        if(BKT_BM15_00.Get(roundNum) != login.GetFullname(roundNum))[m
+[31m-                        {[m
+[31m-                            BKT_BM15_00.Push(login.GetFullname());[m
+[31m-                        }[m
+[31m-                        else[m
+[31m-                        {[m
+[31m-                            Console.Clear();[m
+[31m-                            Console.WriteLine("You already register this time => Please enter to Go next");[m
+[31m-                            Console.ReadLine();[m
+[31m-                            Console.Clear();[m
+[31m-                            BlackToMenuII();[m
+[31m-                        }[m
+[31m-                    }[m
+[31m-                }[m
+[31m-                else[m
+[31m-                {[m
+[31m-                    BKT_BM15_00.Push(login.GetFullname());[m
+[31m-                }[m
+[31m-                break;[m
+[31m-            case "16:30" :[m
+[31m-                if(BKT_BM16_30.GetLength() != 0)[m
+[31m-                {[m
+[31m-                    for(int roundNum = 0; roundNum <= BKT_BM16_30.GetLength()- 1; roundNum++)[m
+[31m-                    {[m
+[31m-                        if(BKT_BM16_30.Get(roundNum) != login.GetFullname(roundNum))[m
+[31m-                        {[m
+[31m-                            BKT_BM16_30.Push(login.GetFullname());[m
+[31m-                        }[m
+[31m-                        else[m
+[31m-                        {[m
+[31m-                            Console.Clear();[m
+[31m-                            Console.WriteLine("You already register this time => Please enter to Go next");[m
+[31m-                            Console.ReadLine();[m
+[31m-                            Console.Clear();[m
+[31m-                            BlackToMenuII();[m
+[31m-                        }[m
+[31m-                    }[m
+[31m-                }[m
+[31m-                else[m
+[31m-                {[m
+[31m-                    BKT_BM16_30.Push(login.GetFullname());[m
+[31m-                }[m
+[31m-                break;[m
+[31m-            case "17:00" :[m
+[31m-                if(BKT_BM17_00.GetLength() != 0)[m
+[31m-                {[m
+[31m-                    for(int roundNum = 0; roundNum <= BKT_BM17_00.GetLength() - 1; roundNum++)[m
+[31m-                    {[m
+[31m-                        if(BKT_BM17_00.Get(roundNum) != login.GetFullname(roundNum))[m
+[31m-                        {[m
+[31m-                            BKT_BM17_00.Push(login.GetFullname());[m
+[31m-                        }[m
+[31m-                        else[m
+[31m-                        {[m
+[31m-                            Console.Clear();[m
+[31m-                            Console.WriteLine("You already register this time => Please enter to Go next");[m
+[31m-                            Console.ReadLine();[m
+[31m-                            Console.Clear();[m
+[31m-                            BlackToMenuII();[m
+[31m-                        }[m
+[31m-                    }[m
+[31m-                }[m
+[31m-                else[m
+[31m-                {[m
+[31m-                    BKT_BM17_00.Push(login.GetFullname());[m
+[31m-                }[m
+[31m-                break;[m
+[31m-            case "17:30" :[m
+[31m-                if(BKT_BM17_30.GetLength() != 0)[m
+[31m-                {[m
+[31m-                    for(int roundNum = 0; roundNum <= BKT_BM17_30.GetLength() - 1; roundNum++)[m
+[31m-                    {[m
+[31m-                        if(BKT_BM17_30.Get(roundNum) != login.GetFullname(roundNum))[m
+[31m-                        {[m
+[31m-                            BKT_BM17_30.Push(login.GetFullname());[m
+[31m-                        }[m
+[31m-                        else[m
+[31m-                        {[m
+[31m-                            Console.Clear();[m
+[31m-                            Console.WriteLine("You already register this time => Please enter to Go next");[m
+[31m-                            Console.ReadLine();[m
+[31m-                            Console.Clear();[m
+[31m-                            BlackToMenuII();[m
+[31m-                        }[m
+[31m-                    }[m
+[31m-                }[m
+[31m-                else[m
+[31m-                {[m
+[31m-                    BKT_BM17_30.Push(login.GetFullname());[m
+[31m-                }[m
+[31m-                break;[m
+[31m-            case "18:30" :[m
+[31m-                if(BKT_BM18_30.GetLength() != 0)[m
+[31m-                {[m
+[31m-                    for(int roundNum = 0; roundNum <= BKT_BM18_30.GetLength() -1; roundNum++)[m
+[31m-                    {[m
+[31m-                        if(BKT_BM18_30.Get(roundNum) != Login.GetFullname(roundNum))[m
+[31m-                        {[m
+[31m-                            BKT_BM18_30.Push(login.GetFullname());[m
+[31m-                        }[m
+[31m-                        else[m
+[31m-                        {[m
+[31m-                            Console.Clear();[m
+[31m-                            Console.WriteLine("You already register this time => Please enter to Go next");[m
+[31m-                            Console.ReadLine();[m
+[31m-                            Console.Clear();[m
+[31m-                            BlackToMenuII();[m
+[31m-                        }[m
+[31m-                    }[m
+[31m-                }[m
+[31m-                else[m
+[31m-                {[m
+[31m-                    BKT_BM18_30.Push(login.GetFullname());[m
+[31m-                }[m
+[31m-                break;[m
+[31m-        }[m
+[31m-    }[m
+[31m-    public static string ShowTimeBM_BKT()[m
+[31m-    {   [m
+[31m-        Console.Clear();[m
+[31m-        Console.WriteLine("*********| Select time to go |*********");[m
+[31m-        Console.WriteLine("1. 07:30");[m
+[31m-        Console.WriteLine("2. 08:00");[m
+[31m-        Console.WriteLine("3. 08:15");[m
+[31m-        Console.WriteLine("4. 08:30");[m
+[31m-        Console.WriteLine("5. 12:00");[m
+[31m-        Console.WriteLine("6. 14:00");[m
+[31m-        Console.WriteLine("7. 16:00");[m
+[31m-        Console.WriteLine("***************************************");[m
+[31m-        Console.Write("Please input time : ");[m
+[31m-[m
+[31m-        int i = int.Parse(Console.ReadLine());[m
+[31m-        if(i == 1) {[m
+[31m-            return "07:30";[m
+[31m-        }[m
+[31m-        else if(i == 2) {[m
+[31m-            return "08.00";[m
+[31m-        }[m
+[31m-        else if(i == 3) {[m
+[31m-            return "08:15";[m
+[31m-        }[m
+[31m-        else if(i == 4) {[m
+[31m-            return "08:30";[m
+[31m-        }[m
+[31m-        else if(i == 5) {[m
+[31m-            return "12:00";[m
+[31m-        }[m
+[31m-        else if(i == 6) {[m
+[31m-            return "14:00";[m
+[31m-        }[m
+[31m-        else if(i == 7) {[m
+[31m-            return "16:00";[m
+[31m-        }[m
+[31m-        else return null;[m
+[31m-    }[m
+[31m-    public static string showTimeBKT_BM()[m
+[31m-    {   [m
+[31m-        Console.Clear();[m
+[31m-        Console.WriteLine("*********| Select time to go |*********");[m
+[31m-        Console.WriteLine("1. 07:00");[m
+[31m-        Console.WriteLine("2. 10:00");[m
+[31m-        Console.WriteLine("3. 13:00");[m
+[31m-        Console.WriteLine("4. 15:00");[m
+[31m-        Console.WriteLine("5. 16:30");[m
+[31m-        Console.WriteLine("6. 17:00");[m
+[31m-        Console.WriteLine("7. 17:30");[m
+[31m-        Console.WriteLine("8. 18:00");[m
+[31m-        Console.WriteLine("***************************************");[m
+[31m-        Console.Write("Please input time : ");[m
+[31m-[m
+[31m-        int i = int.Parse(Console.ReadLine());[m
+[31m-        if(i == 1) {[m
+[31m-            return "07:00";[m
+[31m-        }[m
+[31m-        else if(i == 2) {[m
+[31m-            return "10:00";[m
+[31m-        }[m
+[31m-        else if(i == 3) {[m
+[31m-            return "13:00";[m
+[31m-        }[m
+[31m-        else if(i == 4) {[m
+[31m-            return "15:00";[m
+[31m-        } [m
+[31m-        else if(i == 5) {[m
+[31m-            return "16:30";[m
+[31m-        } [m
+[31m-        else if(i == 6) {[m
+[31m-            return "17:00";[m
+[31m-        } [m
+[31m-        else if(i == 7) {[m
+[31m-            return "17:30";[m
+[31m-        } [m
+[31m-        else if(i == 8) {[m
+[31m-            return "18:30";[m
+[31m-        }[m
+[31m-        else return null;[m
+[31m-    }[m
+[31m-     static void ShowInputRegister()[m
+[31m-    {[m
+[31m-        Console.Clear();[m
+[31m-[m
+[31m-        Console.WriteLine("Register for KMUTT Bus Booking");[m
+[31m-        Console.WriteLine("*****************************************");[m
+[31m-        Console.Write("Select Type (1.College Student, 2.Teacher) : ");[m
+[31m-            for(int i = 0; i  <= 0;)[m
+[31m-            {[m
+[31m-                int s = int.Parse(Console.ReadLine());[m
+[31m-                if (s == 1)[m
+[31m-                {[m
+[31m-                    InputCollegeStudentInfoFromKeyboard();[m
+[31m-                    i++;[m
+[31m-                }[m
+[31m-                else if (s == 3)[m
+[31m-                {[m
+[31m-                    InputTeacherInfoFromKeyboard();[m
+[31m-                    i++;[m
+[31m-                }[m
+[31m-                else[m
+[31m-                {[m
+[31m-                    Console.WriteLine("*****************************************");[m
+[31m-                    Console.Write("Please Enter only 1 or 2 : ");             [m
+[31m-                }[m
+[31m-            }[m
+[31m-        BlackToMenu();[m
+[31m-    } [m
+[31m-[m
+[31m-    static void InputCollegeStudentInfoFromKeyboard()[m
+[31m-    {[m
+[31m-        string getemailStudent = InputEmail();[m
+[31m-        StudentInfo student = new StudentInfo(InputTitle(), InputName(), InputLast(),InputStudentID(),getemailStudent, InputPassword());[m
+[31m-        if(Program.registerList.CheckRegister(getemailStudent))[m
+[31m-        {[m
+[31m-            Program.registerList.AddNewPerson(student);[m
+[31m-        }[m
+[31m-[m
+[31m-        else[m
+[31m-        {[m
+[31m-            Console.WriteLine("Try again. This email exist in system");[m
+[31m-            Console.ReadLine();[m
+[31m-            PrintMenuScreen();[m
+[31m-        }[m
+[31m-    }[m
+[31m-[m
+[31m-    static void InputTeacherInfoFromKeyboard()[m
+[31m-    {[m
+[31m-        string getemailTeacher = InputEmail();[m
+[31m-        TeacherInfo teacher = new TeacherInfo(InputTitle(), InputName(), InputLast(),getemailTeacher, InputPassword());[m
+[31m-        if(Program.registerList.CheckRegister(getemailTeacher))[m
+[31m-        {[m
+[31m-            Program.registerList.AddNewPerson(teacher);[m
+[31m-        }[m
+[31m-[m
+[31m-        else[m
+[31m-        {[m
+[31m-            Console.WriteLine("Try again. This email exist in system");[m
+[31m-            Console.ReadLine();[m
+[31m-            PrintMenuScreen();[m
+[31m-        }[m
+[31m-    }[m
+[31m-[m
+[31m-    static void Login()[m
+[31m-    {   [m
+[31m-        Console.Clear();[m
+[31m-        Console.WriteLine("Login for KMUTT Bus Booking");[m
+[31m-        Console.WriteLine("*****************************************");[m
+[31m-        Console.Write("Input Email : ");[m
+[31m-        string mail = Console.ReadLine();[m
+[31m-        Console.Write("Input Password : ");[m
+[31m-        string pass = Console.ReadLine();[m
+[31m-[m
+[31m-        if(mail == "exit")[m
+[31m-        {[m
+[31m-            PrintMenuScreen();[m
+[31m-        }[m
+[31m-        else if(Program.registerList.CheckLogin(mail, pass))[m
+[31m-        {[m
+[31m-            BlackToMenuII();[m
+[31m-        }[m
+[31m-        else[m
+[31m-        {[m
+[31m-            Login();[m
+[31m-        }[m
+[31m-    }[m
+[31m-[m
+[31m-    static void Logout()[m
+[31m-    {[m
+[31m-        Console.Clear();[m
+[31m-        BlackToMenu();[m
+[31m-    }[m
+[31m-[m
+[31m-    static void BlackToMenu()[m
+[31m-    {[m
+[31m-        Console.Clear();[m
+[31m-        PrintFirstListMenu();[m
+[31m-        InputMenuFromKeyboard();[m
+[31m-    }[m
+[31m-[m
+[31m-    static void BlackToMenuII()[m
+[31m-    {[m
+[31m-        Console.Clear();[m
+[31m-        PrintSecondListMenu();[m
+[31m-        InputMenuIIFromKeyboard();[m
+[31m-    }[m
+[31m-[m
+[31m-     static void PrepareRegisterListWhenProgramIsLoad()[m
+[31m-    {[m
+[31m-        Program.registerList = new RegisterInfoList();[m
+[31m-    }[m
+[31m-[m
+[31m-    static string InputName()[m
+[31m-    {[m
+[31m-        Console.Write("Name : ");[m
+[31m-[m
+[31m-        return Console.ReadLine();[m
+[31m-    }[m
+[31m-[m
+[31m-    static string InputStudentID()[m
+[31m-    {[m
+[31m-        Console.Write("StudentID : ");[m
+[31m-[m
+[31m-        return Console.ReadLine();[m
+[31m-    }[m
+[31m-[m
+[31m-    static string InputLast()[m
+[31m-    {[m
+[31m-        Console.Write("Last Name : ");[m
+[31m-[m
+[31m-        return Console.ReadLine();[m
+[31m-    }[m
+[31m-[m
+[31m-    static string InputEmail()[m
+[31m-    {[m
+[31m-       Console.Write("Email : ");[m
+[31m-[m
+[31m-        return Console.ReadLine(); [m
+[31m-    }[m
+[31m-[m
+[31m-    static string InputPassword()[m
+[31m-    {[m
+[31m-       Console.Write("Password : ");[m
+[31m-[m
+[31m-        return Console.ReadLine(); [m
+[31m-    }[m
+[31m-[m
+[31m-    static string InputTitle()[m
+[31m-    {   [m
+[31m-        Console.Write("Input Your Title Name (1.Mr, 2.Mrs, 3.Miss) : ");[m
+[31m-        int s = int.Parse(Console.ReadLine());[m
+[31m-        if (s == 1)[m
+[31m-        {[m
+[31m-            return  "Mr.";[m
+[31m-        }[m
+[31m-[m
+[31m-        else if (s == 2)[m
+[31m-        {[m
+[31m-            return "Mrs.";[m
+[31m-        }[m
+[31m-[m
+[31m-        else if (s == 3)[m
+[31m-        {[m
+[31m-            return "Miss.";[m
+[31m-        }[m
+[31m-        else[m
+[31m-        {[m
+[31m-            Console.WriteLine("*****************************************");[m
+[31m-            Console.WriteLine("Please Enter only 1-3 :");[m
+[31m-            return null;             [m
+[31m-        }[m
+[31m-    }[m
+[31m-    public static void TimeCheck() { //รับค่า Person login[m
+[31m-        [m
+[31m-    }[m
+[31m-    [m
+[31m-}[m
+\ No newline at end of file[m
+[32m+[m[32m﻿// See https://aka.ms/new-console-template for more information[m
+[32m+[m[32mConsole.WriteLine("Hello, World!");[m
+[1mdiff --git a/Queue.cs b/Queue.cs[m
+[1mdeleted file mode 100644[m
+[1mindex b0124e4..0000000[m
+[1m--- a/Queue.cs[m
+[1m+++ /dev/null[m
+[36m@@ -1,50 +0,0 @@[m
+[31m-class Queue<T>[m
+[31m-{[m
+[31m-    private Node<T> top = null;[m
+[31m-    private int length = 0;[m
+[31m-[m
+[31m-    public void Push(T value)[m
+[31m-    {[m
+[31m-        Node<T> node = new Node<T>(value);[m
+[31m-        if(this.top == null)[m
+[31m-        {[m
+[31m-            this.top = node;[m
+[31m-        }[m
+[31m-        else[m
+[31m-        {[m
+[31m-            Node<T> lastNode = this.GetNode(this.length-1);[m
+[31m-            lastNode.SetNext(node);[m
+[31m-        }[m
+[31m-        this.length++;[m
+[31m-    }[m
+[31m-[m
+[31m-    public T Pop()[m
+[31m-    {[m
+[31m-        Node<T> node = this.top;[m
+[31m-        this.top = this.top.Next();[m
+[31m-        this.length--;[m
+[31m-        return node.GetValue();[m
+[31m-    }[m
+[31m-[m
+[31m-    public T Get(int index)[m
+[31m-    {[m
+[31m-        Node<T> ptr = this.GetNode(index);[m
+[31m-        return ptr.GetValue();[m
+[31m-    }[m
+[31m-[m
+[31m-    public int GetLength()[m
+[31m-    {[m
+[31m-        return this.length;[m
+[31m-    }[m
+[31m-[m
+[31m-    private Node<T> GetNode(int index)[m
+[31m-    {[m
+[31m-        Node<T> ptr = this.top;[m
+[31m-        while(index > 0)[m
+[31m-        {[m
+[31m-            ptr = ptr.Next();[m
+[31m-            index--;[m
+[31m-        }[m
+[31m-        return ptr;[m
+[31m-    }[m
+[31m-}[m
+\ No newline at end of file[m
+[1mdiff --git a/RegisterInfoList.cs b/RegisterInfoList.cs[m
+[1mdeleted file mode 100644[m
+[1mindex 066d74b..0000000[m
+[1m--- a/RegisterInfoList.cs[m
+[1m+++ /dev/null[m
+[36m@@ -1,95 +0,0 @@[m
+[31m-using System.Collections.Generic;[m
+[31m-[m
+[31m-class RegisterInfoList[m
+[31m-{[m
+[31m-    private List<Info> registerInfoList;[m
+[31m-[m
+[31m-    public RegisterInfoList()[m
+[31m-    {[m
+[31m-        this.registerInfoList = new List<Info>();[m
+[31m-    }[m
+[31m-    public Info CurrentLogin { get; set; }[m
+[31m-[m
+[31m-    public void AddNewPerson(Info info)[m
+[31m-    {[m
+[31m-        this.registerInfoList.Add(info);[m
+[31m-        int num = 0;[m
+[31m-        num++;[m
+[31m-    }[m
+[31m-[m
+[31m-     public void FetchCollegeStudentList()[m
+[31m-    {[m
+[31m-        Console.WriteLine("List Student");[m
+[31m-        Console.WriteLine("***************************");[m
+[31m-[m
+[31m-        foreach(Info info in this.registerInfoList)[m
+[31m-        {[m
+[31m-            if(info is StudentInfo)[m
+[31m-            {[m
+[31m-                Console.WriteLine("1. {0} {1} {2}", info.GetTitle(), info.GetName(), info.GetLastName());[m
+[31m-            }[m
+[31m-        }[m
+[31m-    }[m
+[31m-[m
+[31m-    public void FetchTeacherList()[m
+[31m-    {[m
+[31m-        Console.WriteLine("List Teacher");[m
+[31m-        Console.WriteLine("***************************");[m
+[31m-[m
+[31m-        foreach(Info info in this.registerInfoList)[m
+[31m-        {[m
+[31m-            if(info is TeacherInfo)[m
+[31m-            {[m
+[31m-                Console.WriteLine("1. {0} {1} {2}", info.GetTitle(), info.GetName(), info.GetLastName());[m
+[31m-            }[m
+[31m-        }[m
+[31m-    }[m
+[31m-[m
+[31m-    public bool CheckLogin(string email, string password)[m
+[31m-    {[m
+[31m-         foreach(Info info in this.registerInfoList)[m
+[31m-         {[m
+[31m-            if(info is TeacherInfo teacherInfo)[m
+[31m-            {[m
+[31m-                if(teacherInfo.GetEmail() == email && teacherInfo.GetPassword() == password)[m
+[31m-                {[m
+[31m-                    CurrentLogin = teacherInfo;[m
+[31m-                    return true;[m
+[31m-                }[m
+[31m-            }[m
+[31m-            else if(info is StudentInfo studentInfo)[m
+[31m-            {[m
+[31m-                if(studentInfo.GetEmail() == email && studentInfo.GetPassword() == password)[m
+[31m-                {[m
+[31m-                    CurrentLogin = studentInfo;[m
+[31m-                    return true;[m
+[31m-                }[m
+[31m-            }[m
+[31m-         }  [m
+[31m-         return false;[m
+[31m-    }[m
+[31m-    public bool CheckRegister(string email)[m
+[31m-    {[m
+[31m-        [m
+[31m-         foreach(Info info in this.registerInfoList)[m
+[31m-         {[m
+[31m-            if(info is TeacherInfo teacherInfo)[m
+[31m-            {[m
+[31m-                if(teacherInfo.GetEmail() == email )[m
+[31m-                {[m
+[31m-                    [m
+[31m-                    return false;[m
+[31m-                }[m
+[31m-            }[m
+[31m-            else if(info is StudentInfo studentInfo)[m
+[31m-            {[m
+[31m-                if(studentInfo.GetEmail() == email )[m
+[31m-                {[m
+[31m-                    [m
+[31m-                    return false;[m
+[31m-                }[m
+[31m-            }[m
+[31m-         }  [m
+[31m-         return true;[m
+[31m-    }[m
+[31m-}[m
+\ No newline at end of file[m
+[1mdiff --git a/StudentInfo.cs b/StudentInfo.cs[m
+[1mdeleted file mode 100644[m
+[1mindex 52138a6..0000000[m
+[1m--- a/StudentInfo.cs[m
+[1m+++ /dev/null[m
+[36m@@ -1,25 +0,0 @@[m
+[31m-class StudentInfo: Info[m
+[31m-{[m
+[31m-    private string studentID;[m
+[31m-    private string email;[m
+[31m-    private string password;[m
+[31m-[m
+[31m-    public StudentInfo(string title, string name, string lastname, string studentID,  string email, string password)[m
+[31m-    :base(title, name, lastname)[m
+[31m-    {[m
+[31m-        this.studentID = studentID;[m
+[31m-        this.email = email;[m
+[31m-        this.password = password;[m
+[31m-    }[m
+[31m-[m
+[31m-[m
+[31m-    public string GetEmail()[m
+[31m-    {[m
+[31m-        return this.email;[m
+[31m-    }[m
+[31m-[m
+[31m-    public string GetPassword()[m
+[31m-    {[m
+[31m-        return this.password;[m
+[31m-    }[m
+[31m-}[m
+\ No newline at end of file[m
+[1mdiff --git a/TeacherInfo.cs b/TeacherInfo.cs[m
+[1mdeleted file mode 100644[m
+[1mindex bf234a5..0000000[m
+[1m--- a/TeacherInfo.cs[m
+[1m+++ /dev/null[m
+[36m@@ -1,21 +0,0 @@[m
+[31m-class TeacherInfo: Info[m
+[31m-{[m
+[31m-    private string email;[m
+[31m-    private string password;[m
+[31m-[m
+[31m-    public TeacherInfo(string title, string name, string lastname, string email, string password)[m
+[31m-    :base(title, name, lastname)[m
+[31m-    {[m
+[31m-        this.email = email;[m
+[31m-        this.password = password;[m
+[31m-    }[m
+[31m-[m
+[31m-    public string GetEmail()[m
+[31m-    {[m
+[31m-        return this.email;[m
+[31m-    }[m
+[31m-    public string GetPassword()[m
+[31m-    {[m
+[31m-        return this.password;[m
+[31m-    }[m
+[31m-}[m
+\ No newline at end of file[m
+[1mdiff --git a/bin/Debug/net6.0/Group_Handsome2.deps.json b/bin/Debug/net6.0/Group_Handsome2.deps.json[m
+[1mdeleted file mode 100644[m
+[1mindex 81113d1..0000000[m
+[1m--- a/bin/Debug/net6.0/Group_Handsome2.deps.json[m
+[1m+++ /dev/null[m
+[36m@@ -1,23 +0,0 @@[m
+[31m-{[m
+[31m-  "runtimeTarget": {[m
+[31m-    "name": ".NETCoreApp,Version=v6.0",[m
+[31m-    "signature": ""[m
+[31m-  },[m
+[31m-  "compilationOptions": {},[m
+[31m-  "targets": {[m
+[31m-    ".NETCoreApp,Version=v6.0": {[m
+[31m-      "Group_Handsome2/1.0.0": {[m
+[31m-        "runtime": {[m
+[31m-          "Group_Handsome2.dll": {}[m
+[31m-        }[m
+[31m-      }[m
+[31m-    }[m
+[31m-  },[m
+[31m-  "libraries": {[m
+[31m-    "Group_Handsome2/1.0.0": {[m
+[31m-      "type": "project",[m
+[31m-      "serviceable": false,[m
+[31m-      "sha512": ""[m
+[31m-    }[m
+[31m-  }[m
+[31m-}[m
+\ No newline at end of file[m
+[1mdiff --git a/bin/Debug/net6.0/Group_Handsome2.dll b/bin/Debug/net6.0/Group_Handsome2.dll[m
+[1mdeleted file mode 100644[m
+[1mindex c311185..0000000[m
+Binary files a/bin/Debug/net6.0/Group_Handsome2.dll and /dev/null differ
+[1mdiff --git a/bin/Debug/net6.0/Group_Handsome2.exe b/bin/Debug/net6.0/Group_Handsome2.exe[m
+[1mdeleted file mode 100644[m
+[1mindex 619c8f7..0000000[m
+Binary files a/bin/Debug/net6.0/Group_Handsome2.exe and /dev/null differ
+[1mdiff --git a/bin/Debug/net6.0/Group_Handsome2.pdb b/bin/Debug/net6.0/Group_Handsome2.pdb[m
+[1mdeleted file mode 100644[m
+[1mindex 43c9c10..0000000[m
+Binary files a/bin/Debug/net6.0/Group_Handsome2.pdb and /dev/null differ
+[1mdiff --git a/bin/Debug/net6.0/Group_Handsome2.runtimeconfig.json b/bin/Debug/net6.0/Group_Handsome2.runtimeconfig.json[m
+[1mdeleted file mode 100644[m
+[1mindex 4986d16..0000000[m
+[1m--- a/bin/Debug/net6.0/Group_Handsome2.runtimeconfig.json[m
+[1m+++ /dev/null[m
+[36m@@ -1,9 +0,0 @@[m
+[31m-{[m
+[31m-  "runtimeOptions": {[m
+[31m-    "tfm": "net6.0",[m
+[31m-    "framework": {[m
+[31m-      "name": "Microsoft.NETCore.App",[m
+[31m-      "version": "6.0.0"[m
+[31m-    }[m
+[31m-  }[m
+[31m-}[m
+\ No newline at end of file[m
+[1mdiff --git a/obj/Debug/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs b/obj/Debug/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs[m
+[1mdeleted file mode 100644[m
+[1mindex 36203c7..0000000[m
+[1m--- a/obj/Debug/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs[m
+[1m+++ /dev/null[m
+[36m@@ -1,4 +0,0 @@[m
+[31m-// <autogenerated />[m
+[31m-using System;[m
+[31m-using System.Reflection;[m
+[31m-[assembly: global::System.Runtime.Versioning.TargetFrameworkAttribute(".NETCoreApp,Version=v6.0", FrameworkDisplayName = "")][m
+[1mdiff --git a/obj/Debug/net6.0/Group_Handsome2.AssemblyInfo.cs b/obj/Debug/net6.0/Group_Handsome2.AssemblyInfo.cs[m
+[1mdeleted file mode 100644[m
+[1mindex 1c8d5f0..0000000[m
+[1m--- a/obj/Debug/net6.0/Group_Handsome2.AssemblyInfo.cs[m
+[1m+++ /dev/null[m
+[36m@@ -1,22 +0,0 @@[m
+[31m-//------------------------------------------------------------------------------[m
+[31m-// <auto-generated>[m
+[31m-//     This code was generated by a tool.[m
+[31m-//[m
+[31m-//     Changes to this file may cause incorrect behavior and will be lost if[m
+[31m-//     the code is regenerated.[m
+[31m-// </auto-generated>[m
+[31m-//------------------------------------------------------------------------------[m
+[31m-[m
+[31m-using System;[m
+[31m-using System.Reflection;[m
+[31m-[m
+[31m-[assembly: System.Reflection.AssemblyCompanyAttribute("Group_Handsome2")][m
+[31m-[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")][m
+[31m-[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")][m
+[31m-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")][m
+[31m-[assembly: System.Reflection.AssemblyProductAttribute("Group_Handsome2")][m
+[31m-[assembly: System.Reflection.AssemblyTitleAttribute("Group_Handsome2")][m
+[31m-[assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")][m
+[31m-[m
+[31m-// Generated by the MSBuild WriteCodeFragment class.[m
+[31m-[m
+[1mdiff --git a/obj/Debug/net6.0/Group_Handsome2.AssemblyInfoInputs.cache b/obj/Debug/net6.0/Group_Handsome2.AssemblyInfoInputs.cache[m
+[1mdeleted file mode 100644[m
+[1mindex ea45633..0000000[m
+[1m--- a/obj/Debug/net6.0/Group_Handsome2.AssemblyInfoInputs.cache[m
+[1m+++ /dev/null[m
+[36m@@ -1 +0,0 @@[m
+[31m-b114c00399bd4b8d7cb665b8c640cdebde2f8e07[m
+[1mdiff --git a/obj/Debug/net6.0/Group_Handsome2.GeneratedMSBuildEditorConfig.editorconfig b/obj/Debug/net6.0/Group_Handsome2.GeneratedMSBuildEditorConfig.editorconfig[m
+[1mdeleted file mode 100644[m
+[1mindex 7baf893..0000000[m
+[1m--- a/obj/Debug/net6.0/Group_Handsome2.GeneratedMSBuildEditorConfig.editorconfig[m
+[1m+++ /dev/null[m
+[36m@@ -1,10 +0,0 @@[m
+[31m-is_global = true[m
+[31m-build_property.TargetFramework = net6.0[m
+[31m-build_property.TargetPlatformMinVersion = [m
+[31m-build_property.UsingMicrosoftNETSdkWeb = [m
+[31m-build_property.ProjectTypeGuids = [m
+[31m-build_property.InvariantGlobalization = [m
+[31m-build_property.PlatformNeutralAssembly = [m
+[31m-build_property._SupportedPlatformList = Linux,macOS,Windows[m
+[31m-build_property.RootNamespace = Group_Handsome2[m
+[31m-build_property.ProjectDir = D:\github\Group_Handsome2\[m
+[1mdiff --git a/obj/Debug/net6.0/Group_Handsome2.GlobalUsings.g.cs b/obj/Debug/net6.0/Group_Handsome2.GlobalUsings.g.cs[m
+[1mdeleted file mode 100644[m
+[1mindex 8578f3d..0000000[m
+[1m--- a/obj/Debug/net6.0/Group_Handsome2.GlobalUsings.g.cs[m
+[1m+++ /dev/null[m
+[36m@@ -1,8 +0,0 @@[m
+[31m-// <auto-generated/>[m
+[31m-global using global::System;[m
+[31m-global using global::System.Collections.Generic;[m
+[31m-global using global::System.IO;[m
+[31m-global using global::System.Linq;[m
+[31m-global using global::System.Net.Http;[m
+[31m-global using global::System.Threading;[m
+[31m-global using global::System.Threading.Tasks;[m
+[1mdiff --git a/obj/Debug/net6.0/Group_Handsome2.assets.cache b/obj/Debug/net6.0/Group_Handsome2.assets.cache[m
+[1mdeleted file mode 100644[m
+[1mindex 7a7c029..0000000[m
+Binary files a/obj/Debug/net6.0/Group_Handsome2.assets.cache and /dev/null differ
+[1mdiff --git a/obj/Debug/net6.0/Group_Handsome2.csproj.AssemblyReference.cache b/obj/Debug/net6.0/Group_Handsome2.csproj.AssemblyReference.cache[m
+[1mdeleted file mode 100644[m
+[1mindex ddd7df8..0000000[m
+Binary files a/obj/Debug/net6.0/Group_Handsome2.csproj.AssemblyReference.cache and /dev/null differ
+[1mdiff --git a/obj/Debug/net6.0/Group_Handsome2.csproj.CoreCompileInputs.cache b/obj/Debug/net6.0/Group_Handsome2.csproj.CoreCompileInputs.cache[m
+[1mdeleted file mode 100644[m
+[1mindex aafee4e..0000000[m
+[1m--- a/obj/Debug/net6.0/Group_Handsome2.csproj.CoreCompileInputs.cache[m
+[1m+++ /dev/null[m
+[36m@@ -1 +0,0 @@[m
+[31m-1a90f1619b41b62dda867751a2f63571a956aabf[m
+[1mdiff --git a/obj/Debug/net6.0/Group_Handsome2.csproj.FileListAbsolute.txt b/obj/Debug/net6.0/Group_Handsome2.csproj.FileListAbsolute.txt[m
+[1mdeleted file mode 100644[m
+[1mindex 21a79b3..0000000[m
+[1m--- a/obj/Debug/net6.0/Group_Handsome2.csproj.FileListAbsolute.txt[m
+[1m+++ /dev/null[m
+[36m@@ -1,23 +0,0 @@[m
+[31m-C:\Users\zilfa\OneDrive\เดสก์ท็อป\Group_Handsome2\obj\Debug\net6.0\Group_Handsome2.csproj.AssemblyReference.cache[m
+[31m-C:\Users\zilfa\OneDrive\เดสก์ท็อป\Group_Handsome2\obj\Debug\net6.0\Group_Handsome2.GeneratedMSBuildEditorConfig.editorconfig[m
+[31m-C:\Users\zilfa\OneDrive\เดสก์ท็อป\Group_Handsome2\obj\Debug\net6.0\Group_Handsome2.AssemblyInfoInputs.cache[m
+[31m-C:\Users\zilfa\OneDrive\เดสก์ท็อป\Group_Handsome2\obj\Debug\net6.0\Group_Handsome2.AssemblyInfo.cs[m
+[31m-C:\Users\zilfa\OneDrive\เดสก์ท็อป\Group_Handsome2\obj\Debug\net6.0\Group_Handsome2.csproj.CoreCompileInputs.cache[m
+[31m-C:\Users\zilfa\OneDrive\เดสก์ท็อป\Group_Handsome2\bin\Debug\net6.0\Group_Handsome2.exe[m
+[31m-C:\Users\zilfa\OneDrive\เดสก์ท็อป\Group_Handsome2\bin\Debug\net6.0\Group_Handsome2.deps.json[m
+[31m-C:\Users\zilfa\OneDrive\เดสก์ท็อป\Group_Handsome2\bin\Debug\net6.0\Group_Handsome2.runtimeconfig.json[m
+[31m-C:\Users\zilfa\OneDrive\เดสก์ท็อป\Group_Handsome2\bin\Debug\net6.0\Group_Handsome2.dll[m
+[31m-C:\Users\zilfa\OneDrive\เดสก์ท็อป\Group_Handsome2\bin\Debug\net6.0\Group_Handsome2.pdb[m
+[31m-C:\Users\zilfa\OneDrive\เดสก์ท็อป\Group_Handsome2\obj\Debug\net6.0\Group_Handsome2.dll[m
+[31m-C:\Users\zilfa\OneDrive\เดสก์ท็อป\Group_Handsome2\obj\Debug\net6.0\refint\Group_Handsome2.dll[m
+[31m-C:\Users\zilfa\OneDrive\เดสก์ท็อป\Group_Handsome2\obj\Debug\net6.0\Group_Handsome2.pdb[m
+[31m-C:\Users\zilfa\OneDrive\เดสก์ท็อป\Group_Handsome2\obj\Debug\net6.0\Group_Handsome2.genruntimeconfig.cache[m
+[31m-C:\Users\zilfa\OneDrive\เดสก์ท็อป\Group_Handsome2\obj\Debug\net6.0\ref\Group_Handsome2.dll[m
+[31m-D:\github\Group_Handsome2\obj\Debug\net6.0\Group_Handsome2.csproj.AssemblyReference.cache[m
+[31m-D:\github\Group_Handsome2\obj\Debug\net6.0\Group_Handsome2.GeneratedMSBuildEditorConfig.editorconfig[m
+[31m-D:\github\Group_Handsome2\obj\Debug\net6.0\Group_Handsome2.AssemblyInfoInputs.cache[m
+[31m-D:\github\Group_Handsome2\obj\Debug\net6.0\Group_Handsome2.AssemblyInfo.cs[m
+[31m-D:\github\Group_Handsome2\obj\Debug\net6.0\Group_Handsome2.csproj.CoreCompileInputs.cache[m
+[31m-D:\github\Group_Handsome2\obj\Debug\net6.0\Group_Handsome2.dll[m
+[31m-D:\github\Group_Handsome2\obj\Debug\net6.0\refint\Group_Handsome2.dll[m
+[31m-D:\github\Group_Handsome2\obj\Debug\net6.0\Group_Handsome2.pdb[m
+[1mdiff --git a/obj/Debug/net6.0/Group_Handsome2.dll b/obj/Debug/net6.0/Group_Handsome2.dll[m
+[1mdeleted file mode 100644[m
+[1mindex c311185..0000000[m
+Binary files a/obj/Debug/net6.0/Group_Handsome2.dll and /dev/null differ
+[1mdiff --git a/obj/Debug/net6.0/Group_Handsome2.genruntimeconfig.cache b/obj/Debug/net6.0/Group_Handsome2.genruntimeconfig.cache[m
+[1mdeleted file mode 100644[m
+[1mindex b36b0f4..0000000[m
+[1m--- a/obj/Debug/net6.0/Group_Handsome2.genruntimeconfig.cache[m
+[1m+++ /dev/null[m
+[36m@@ -1 +0,0 @@[m
+[31m-de1ae06b4f2d244df0e9864b44398b7c2cc248c4[m
+[1mdiff --git a/obj/Debug/net6.0/Group_Handsome2.pdb b/obj/Debug/net6.0/Group_Handsome2.pdb[m
+[1mdeleted file mode 100644[m
+[1mindex 43c9c10..0000000[m
+Binary files a/obj/Debug/net6.0/Group_Handsome2.pdb and /dev/null differ
+[1mdiff --git a/obj/Debug/net6.0/apphost.exe b/obj/Debug/net6.0/apphost.exe[m
+[1mdeleted file mode 100644[m
+[1mindex 619c8f7..0000000[m
+Binary files a/obj/Debug/net6.0/apphost.exe and /dev/null differ
+[1mdiff --git a/obj/Debug/net6.0/ref/Group_Handsome2.dll b/obj/Debug/net6.0/ref/Group_Handsome2.dll[m
+[1mdeleted file mode 100644[m
+[1mindex 16c3338..0000000[m
+Binary files a/obj/Debug/net6.0/ref/Group_Handsome2.dll and /dev/null differ
+[1mdiff --git a/obj/Debug/net6.0/refint/Group_Handsome2.dll b/obj/Debug/net6.0/refint/Group_Handsome2.dll[m
+[1mdeleted file mode 100644[m
+[1mindex 16c3338..0000000[m
+Binary files a/obj/Debug/net6.0/refint/Group_Handsome2.dll and /dev/null differ
+[1mdiff --git a/obj/Group_Handsome2.csproj.nuget.dgspec.json b/obj/Group_Handsome2.csproj.nuget.dgspec.json[m
+[1mindex 8b238dd..7ebe7dd 100644[m
+[1m--- a/obj/Group_Handsome2.csproj.nuget.dgspec.json[m
+[1m+++ b/obj/Group_Handsome2.csproj.nuget.dgspec.json[m
+[36m@@ -1,24 +1,20 @@[m
+ {[m
+   "format": 1,[m
+   "restore": {[m
+[31m-    "D:\\github\\Group_Handsome2\\Group_Handsome2.csproj": {}[m
+[32m+[m[32m    "D:\\Destop\\sasda\\Group_Handsome2\\Group_Handsome2.csproj": {}[m
+   },[m
+   "projects": {[m
+[31m-    "D:\\github\\Group_Handsome2\\Group_Handsome2.csproj": {[m
+[32m+[m[32m    "D:\\Destop\\sasda\\Group_Handsome2\\Group_Handsome2.csproj": {[m
+       "version": "1.0.0",[m
+       "restore": {[m
+[31m-        "projectUniqueName": "D:\\github\\Group_Handsome2\\Group_Handsome2.csproj",[m
+[32m+[m[32m        "projectUniqueName": "D:\\Destop\\sasda\\Group_Handsome2\\Group_Handsome2.csproj",[m
+         "projectName": "Group_Handsome2",[m
+[31m-        "projectPath": "D:\\github\\Group_Handsome2\\Group_Handsome2.csproj",[m
+[31m-        "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",[m
+[31m-        "outputPath": "D:\\github\\Group_Handsome2\\obj\\",[m
+[32m+[m[32m        "projectPath": "D:\\Destop\\sasda\\Group_Handsome2\\Group_Handsome2.csproj",[m
+[32m+[m[32m        "packagesPath": "C:\\Users\\NITRO 5\\.nuget\\packages\\",[m
+[32m+[m[32m        "outputPath": "D:\\Destop\\sasda\\Group_Handsome2\\obj\\",[m
+         "projectStyle": "PackageReference",[m
+[31m-        "fallbackFolders": [[m
+[31m-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"[m
+[31m-        ],[m
+         "configFilePaths": [[m
+[31m-          "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",[m
+[31m-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",[m
+[32m+[m[32m          "C:\\Users\\NITRO 5\\AppData\\Roaming\\NuGet\\NuGet.Config",[m
+           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"[m
+         ],[m
+         "originalTargetFrameworks": [[m
+[1mdiff --git a/obj/Group_Handsome2.csproj.nuget.g.props b/obj/Group_Handsome2.csproj.nuget.g.props[m
+[1mindex 828b713..ce7775a 100644[m
+[1m--- a/obj/Group_Handsome2.csproj.nuget.g.props[m
+[1m+++ b/obj/Group_Handsome2.csproj.nuget.g.props[m
+[36m@@ -5,12 +5,11 @@[m
+     <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>[m
+     <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>[m
+     <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">$(UserProfile)\.nuget\packages\</NuGetPackageRoot>[m
+[31m-    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\Lenovo\.nuget\packages\;C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages</NuGetPackageFolders>[m
+[32m+[m[32m    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\NITRO 5\.nuget\packages\</NuGetPackageFolders>[m
+     <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>[m
+     <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">6.3.0</NuGetToolVersion>[m
+   </PropertyGroup>[m
+   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">[m
+[31m-    <SourceRoot Include="C:\Users\Lenovo\.nuget\packages\" />[m
+[31m-    <SourceRoot Include="C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages\" />[m
+[32m+[m[32m    <SourceRoot Include="C:\Users\NITRO 5\.nuget\packages\" />[m
+   </ItemGroup>[m
+ </Project>[m
+\ No newline at end of file[m
+[1mdiff --git a/obj/project.assets.json b/obj/project.assets.json[m
+[1mindex 433f3f4..0de806c 100644[m
+[1m--- a/obj/project.assets.json[m
+[1m+++ b/obj/project.assets.json[m
+[36m@@ -8,24 +8,19 @@[m
+     "net6.0": [][m
+   },[m
+   "packageFolders": {[m
+[31m-    "C:\\Users\\Lenovo\\.nuget\\packages\\": {},[m
+[31m-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}[m
+[32m+[m[32m    "C:\\Users\\NITRO 5\\.nuget\\packages\\": {}[m
+   },[m
+   "project": {[m
+     "version": "1.0.0",[m
+     "restore": {[m
+[31m-      "projectUniqueName": "D:\\github\\Group_Handsome2\\Group_Handsome2.csproj",[m
+[32m+[m[32m      "projectUniqueName": "D:\\Destop\\sasda\\Group_Handsome2\\Group_Handsome2.csproj",[m
+       "projectName": "Group_Handsome2",[m
+[31m-      "projectPath": "D:\\github\\Group_Handsome2\\Group_Handsome2.csproj",[m
+[31m-      "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",[m
+[31m-      "outputPath": "D:\\github\\Group_Handsome2\\obj\\",[m
+[32m+[m[32m      "projectPath": "D:\\Destop\\sasda\\Group_Handsome2\\Group_Handsome2.csproj",[m
+[32m+[m[32m      "packagesPath": "C:\\Users\\NITRO 5\\.nuget\\packages\\",[m
+[32m+[m[32m      "outputPath": "D:\\Destop\\sasda\\Group_Handsome2\\obj\\",[m
+       "projectStyle": "PackageReference",[m
+[31m-      "fallbackFolders": [[m
+[31m-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"[m
+[31m-      ],[m
+       "configFilePaths": [[m
+[31m-        "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",[m
+[31m-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",[m
+[32m+[m[32m        "C:\\Users\\NITRO 5\\AppData\\Roaming\\NuGet\\NuGet.Config",[m
+         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"[m
+       ],[m
+       "originalTargetFrameworks": [[m
+[1mdiff --git a/obj/project.nuget.cache b/obj/project.nuget.cache[m
+[1mindex 2378085..bea4103 100644[m
+[1m--- a/obj/project.nuget.cache[m
+[1m+++ b/obj/project.nuget.cache[m
+[36m@@ -1,8 +1,8 @@[m
+ {[m
+   "version": 2,[m
+[31m-  "dgSpecHash": "ziUm9HYVXhYlQc8m9jaWTZUZYMw+cCkII6aVkwSt2pMc4gNB0CaeYLv5LvlnhIYVizMrE+S16YhD4OVr1cPm0w==",[m
+[32m+[m[32m  "dgSpecHash": "0LtwF574u4eR9iS77WBOQIeJs2bo7y++ZGQ1nNwSmx2Q3fmlCGt408nT7IngPPNftHbrQOiyckoUdIs3fCMNIQ==",[m
+   "success": true,[m
+[31m-  "projectFilePath": "D:\\github\\Group_Handsome2\\Group_Handsome2.csproj",[m
+[32m+[m[32m  "projectFilePath": "D:\\Destop\\sasda\\Group_Handsome2\\Group_Handsome2.csproj",[m
+   "expectedPackageFiles": [],[m
+   "logs": [][m
+ }[m
+\ No newline at end of file[m
