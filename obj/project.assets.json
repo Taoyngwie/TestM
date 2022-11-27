@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Destop\\sasda\\Group_Handsome2\\Group_Handsome2.csproj",
-      "projectName": "Group_Handsome2",
-      "projectPath": "D:\\Destop\\sasda\\Group_Handsome2\\Group_Handsome2.csproj",
+      "projectUniqueName": "D:\\Destop\\Q and time\\Q and time.csproj",
+      "projectName": "Q and time",
+      "projectPath": "D:\\Destop\\Q and time\\Q and time.csproj",
       "packagesPath": "C:\\Users\\NITRO 5\\.nuget\\packages\\",
-      "outputPath": "D:\\Destop\\sasda\\Group_Handsome2\\obj\\",
+      "outputPath": "D:\\Destop\\Q and time\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\NITRO 5\\AppData\\Roaming\\NuGet\\NuGet.Config",
