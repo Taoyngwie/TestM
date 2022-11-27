@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "UC0I0GcSbZygU6eWveeyvHKlUvyMofgqFzKcwGJr77MzA/+8NgK91mMGvPAXCe9wFMcvOMTqrBEJOWukUlBOYA==",
   "success": true,
   "projectFilePath": "D:\\Destop\\Q and time\\Q and time.csproj",
+=======
+  "dgSpecHash": "ziUm9HYVXhYlQc8m9jaWTZUZYMw+cCkII6aVkwSt2pMc4gNB0CaeYLv5LvlnhIYVizMrE+S16YhD4OVr1cPm0w==",
+  "success": true,
+  "projectFilePath": "D:\\github\\Group_Handsome2\\Group_Handsome2.csproj",
+>>>>>>> TimeInput
   "expectedPackageFiles": [],
   "logs": []
 }

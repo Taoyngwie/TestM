@@ -6,13 +6,21 @@ class Queue<T>
     public void Push(T value)
     {
         Node<T> node = new Node<T>(value);
+<<<<<<< HEAD
         if (this.top == null)
+=======
+        if(this.top == null)
+>>>>>>> TimeInput
         {
             this.top = node;
         }
         else
         {
+<<<<<<< HEAD
             Node<T> lastNode = this.GetNode(this.length - 1);
+=======
+            Node<T> lastNode = this.GetNode(this.length-1);
+>>>>>>> TimeInput
             lastNode.SetNext(node);
         }
         this.length++;
@@ -40,7 +48,11 @@ class Queue<T>
     private Node<T> GetNode(int index)
     {
         Node<T> ptr = this.top;
+<<<<<<< HEAD
         while (index > 0)
+=======
+        while(index > 0)
+>>>>>>> TimeInput
         {
             ptr = ptr.Next();
             index--;
