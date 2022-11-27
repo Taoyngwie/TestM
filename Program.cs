@@ -30,4 +30,6 @@
             // , BKT_BM17_30, BKT_BM18_30);
         }
     }
+
+    public static void Main() { }
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Destop\\Q and time\\Q and time.csproj": {}
+    "C:\\Users\\NITRO 5\\Videos\\TTT\\Group_Handsome2-QueueAndTime\\Q and time.csproj": {}
   },
   "projects": {
-    "D:\\Destop\\Q and time\\Q and time.csproj": {
+    "C:\\Users\\NITRO 5\\Videos\\TTT\\Group_Handsome2-QueueAndTime\\Q and time.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Destop\\Q and time\\Q and time.csproj",
+        "projectUniqueName": "C:\\Users\\NITRO 5\\Videos\\TTT\\Group_Handsome2-QueueAndTime\\Q and time.csproj",
         "projectName": "Q and time",
-        "projectPath": "D:\\Destop\\Q and time\\Q and time.csproj",
+        "projectPath": "C:\\Users\\NITRO 5\\Videos\\TTT\\Group_Handsome2-QueueAndTime\\Q and time.csproj",
         "packagesPath": "C:\\Users\\NITRO 5\\.nuget\\packages\\",
-        "outputPath": "D:\\Destop\\Q and time\\obj\\",
+        "outputPath": "C:\\Users\\NITRO 5\\Videos\\TTT\\Group_Handsome2-QueueAndTime\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\NITRO 5\\AppData\\Roaming\\NuGet\\NuGet.Config",
