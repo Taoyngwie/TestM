@@ -10,7 +10,9 @@ class Info
         this.name = name;
         this.lastname = lastname;
     }
-
+    public string GetFullName() {
+        return $"{title}{name} {lastname}";
+    }
     public string GetTitle()
     {
         return this.title;
